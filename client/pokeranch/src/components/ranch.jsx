@@ -17,7 +17,7 @@ function Ranch() {
 
         // {allPokemon? allPokemon.map((pokemon) => pokemon.name) : "loading" }
     return (<div>
-        <Link to="pokemon">Pokmon Profile</Link>
+        <Link to="/pokemon">Pokemon Profile</Link>
     </div>)
 }
 

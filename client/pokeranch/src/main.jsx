@@ -4,6 +4,7 @@ import App from './App.jsx'
 import './index.css'
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Ranch from './components/ranch.jsx';
+import PokemonProfile from './components/PokemonProfile.jsx';
 
 
 
