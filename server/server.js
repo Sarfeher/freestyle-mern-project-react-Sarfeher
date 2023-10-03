@@ -26,6 +26,7 @@ mongoose.connect("mongodb+srv://sarfeher:Toyotacorolla20201.8@sarfeher.hft4jys.m
     console.error(error)
 }); */
 
+
 app.get('/api/pokemon/fight',(req, res) =>{
     const pokeArray = Pokemon.find({});
     res.json(pokeArray);
@@ -62,6 +63,14 @@ app.patch('/api/pokemon/fight/exp',(req, res)=>{
         { new: true, runValidators: true },  
         )
 })
+
+app.get('/api/pokemon/:id', async (req, res) =>{
+    const pokemon = await Pokemon.findById(req.params.id);
+    console.log(pokemon);
+    res.json(pokemon)
+})
+
+
 app.listen(3000, () => {
     console.log('Im in! Open this link: http://127.0.0.1:3000');
 })
