@@ -1,23 +1,24 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
+import {Link} from "react-router-dom";
 
 
 
+function Ranch() {
+    const [allPokemon, setAllPokemon] = useState(null);
 
-function Ranch(){
-    const [pokemon, setPokemon] = useState([]);
+    // useEffect(() => {
+    //     const fetchPokemon = async()=>{
+    //     const response = fetch("api/ranch")
+    //     const data = await response.json();
+    //     setAllPokemon(data)
+    // }
+    // fetchPokemon()
+    // }, [])
 
-    useEffect(()=>{
-        fetch("api/ranch")
-    }[pokemon])
-
-
-
-
-
-
-return (<div>
-
-</div>)
+        // {allPokemon? allPokemon.map((pokemon) => pokemon.name) : "loading" }
+    return (<div>
+        <Link to="pokemon">Pokmon Profile</Link>
+    </div>)
 }
 
 
