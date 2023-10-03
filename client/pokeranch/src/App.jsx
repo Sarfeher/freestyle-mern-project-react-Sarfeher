@@ -1,5 +1,5 @@
 import { useState } from 'react'
-
+import PokemonProfile from './components/PokemonProfile'
 import './App.css'
 import { Link } from "react-router-dom";
 
