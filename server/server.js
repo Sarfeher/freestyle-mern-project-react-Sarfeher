@@ -56,9 +56,14 @@ app.patch('/api/pokemon/fight/exp',(req, res)=>{
 })
 
 app.get('/api/pokemon/:id', async (req, res) =>{
+    console.log(req.params.id);
     const pokemon = await Pokemon.findById(req.params.id);
-    console.log(pokemon);
-    res.json(pokemon)
+    res.status(200).json(pokemon)
+})
+
+app.patch('/api/pokemon/:id', async (req, res) => {
+    const pokemon = await Pokemon.findByIdAndUpdate(req.params.id, req.body);
+    res.status(200).json(pokemon)
 })
 
 
