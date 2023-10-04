@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from "react";
+import FightSelect from "./FightSelect";
+/* TODO
+
+capture scene
+render/2
+make site work
+post capd poke
+change own poke xp
+*/
 
 function Fight(props) {
 
-    const enemyPokeID = Math.floor(Math.random() * 1018);
-    const [enemyPoke, setEnemyPoke] = useState(null)
+    const enemyPoke = props.enemyPoke;
     const [weAreTheAttacker, setWeAreTheAttacker] = useState(true);
     const [enemyPokemonHP, setEnemyPokemonHP] = useState(enemyPoke.stats[0].base_stat);
     const [ourPokemonHP, setOurPokemonHP] = useState(ourPokemon.hp);
@@ -15,11 +23,7 @@ function Fight(props) {
         return Math.floor(dmg);
     }
 
-    const fetchEnemyPoke = async (ID) => {
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${ID}`);
-        const jsonData = await response.json();
-        setEnemyPoke(jsonData);
-    };
+
 
     useEffect(() => {
         setTimeout(() => {
@@ -33,10 +37,10 @@ function Fight(props) {
         }, 500);
       }, [weAreTheAttacker])
 
-    fetchEnemyPoke(enemyPokeID);
-
+    
     return (
-        <></>
+        <>
+        </>
     );
 }
 export default Fight;
