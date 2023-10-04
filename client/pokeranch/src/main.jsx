@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     element: <Ranch />
   },
   {
-    path: "/pokemon:id",
+    path: "/pokemon/:id",
     element: <PokemonProfile />
   }
 ])
