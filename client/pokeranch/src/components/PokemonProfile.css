@@ -7,10 +7,8 @@ body {
 
 img {image-rendering: pixelated;
     height: 400px;
+    transform: translate(0%, 30%);
   }
-
-  /* PokemonProfile.css */
-
 /* Container for the entire Pokemon profile */
 .pokemon-profile-container {
     display: flex;
@@ -22,6 +20,9 @@ img {image-rendering: pixelated;
   .pokemon-data {
     flex: 1;
     margin-right: 20px;
+    font-size: 20px;
+    color: rgb(1, 1, 1);
+    background-color: rgb(255, 255, 255, 0.5);
   }
   
   /* Right section containing the Pokemon image */

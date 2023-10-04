@@ -61,7 +61,7 @@ console.log(editedAttack);
         <div className="pokemon-profile-container">
             {pokemon && <div key={pokemon._id} className="pokemon-data">
                 <h2>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
-                <h3>{pokemon.nickName}</h3>
+                <h2>{pokemon.nickName}</h2>
                 {editingName
                     ? <div><input type="text" value={editedNickName} onChange={onTextChange} />
                         <button type="button" onClick={async () => {
@@ -71,10 +71,10 @@ console.log(editedAttack);
                         }} >Save</button>
                         <button onClick={cancelEdit}>Cancel</button></div>
                     : <button onClick={() => handleEdit(!editingName)}>Set nick name</button>}
-                <h5>Hp: {pokemon.hp}</h5>
-                <h5>Attack: {pokemon.attack}</h5>
-                <h5>Defense: {pokemon.defense}</h5>
-                <h5>Xp: {pokemon.xp}</h5>
+                <h3>Hp: {pokemon.hp}</h3>
+                <h3>Attack: {pokemon.attack}</h3>
+                <h3>Defense: {pokemon.defense}</h3>
+                <h3>Xp: {pokemon.xp}</h3>
                 <div>
                     <button onClick={async () => {
                         const newHp = editedHp + 5
