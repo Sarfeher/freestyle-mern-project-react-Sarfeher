@@ -8,6 +8,13 @@ app.use(express.json())
 mongoose.connect("mongodb+srv://sarfeher:Toyotacorolla20201.8@sarfeher.hft4jys.mongodb.net/pokemon")
 
 
+
+app.get('/api/pokemon/:id', async (req, res) =>{
+    const pokemon = await Pokemon.findById(req.params.id);
+    console.log(pokemon);
+    res.json(pokemon)
+})
+
 app.get("/api/ranch", async(req, res) => {
     const AllPokemon = await Pokemon.find({})
     console.log(AllPokemon)
@@ -54,6 +61,8 @@ app.patch('/api/pokemon/fight/exp', (req, res) => {
     )
 })
 
+
+
 app.get('/api/pokemon/:id', async (req, res) =>{
     console.log(req.params.id);
     const pokemon = await Pokemon.findById(req.params.id);
@@ -61,7 +70,7 @@ app.get('/api/pokemon/:id', async (req, res) =>{
 })
 
 app.patch('/api/pokemon/:id', async (req, res) => {
-    const pokemon = await Pokemon.findByIdAndUpdate(req.params.id, req.body);
+    const pokemon = await Pokemon.findByIdAndUpdate(req.params.id, req.body, {new:true});
     res.status(200).json(pokemon)
 })
 
