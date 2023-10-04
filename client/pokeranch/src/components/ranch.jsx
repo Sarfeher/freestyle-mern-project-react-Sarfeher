@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import PokemonList from "./PokemonList";
+
+
 
 function Ranch() {
     const [allPokemon, setAllPokemon] = useState("");
+    const [position, setPosition] = useState();
+    const [pokemonList, setPokemonList] = useState(null)
 
     useEffect(() => {
         const fetchPokemon = async () => {
@@ -14,15 +19,29 @@ function Ranch() {
         fetchPokemon()
     }, [])
 
-    return (<div>
-        {allPokemon && allPokemon.map(pokemon => <div key={pokemon._id}>
-            <div name={pokemon._id} onClick={(e) => console.log(e.target.name)}>{pokemon.nickName}
+    useEffect(() => {
+        function asd() {
+            setTimeout(() => {
+                setPosition(position + 10);
+                console.log(position)
+            }, "1000");
+        }
+        asd()
+    }, [position])
+
+
+    return (<div className="ranch">
+
+        <div><button onClick={()=>setPokemonList(!pokemonList)} className="showAll">show all</button>{pokemonList && <PokemonList />}</div>
+        {allPokemon && allPokemon.map(pokemon => <div className="pokemon" style={{ translate: `${position}%`, }} key={pokemon._id}>
+            <div name={pokemon._id} >{pokemon.nickName}
             </div>
-            <Link to={`pokemon/${pokemon._id}`}><img name={pokemon._id} onClick={(e) => console.log(e.target.name)} src={pokemon.front}>
+            <Link to={`/pokemon/${pokemon._id}`}><img name={pokemon._id} src={pokemon.front}>
             </img>
             </Link>
-        </div>)}
-    </div>)
+        </div>)
+        }
+    </div >)
 }
 
 

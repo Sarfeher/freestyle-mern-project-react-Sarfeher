@@ -67,3 +67,14 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.pokemon{
+  position: absolute;
+  
+}
+
+.ranch{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
