@@ -8,6 +8,7 @@ import PokemonProfile from './components/PokemonProfile.jsx';
 
 
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
     element: <Ranch />
   },
   {
-    path: "/pokemon",
+    path: "/pokemon:id",
     element: <PokemonProfile />
   }
 ])

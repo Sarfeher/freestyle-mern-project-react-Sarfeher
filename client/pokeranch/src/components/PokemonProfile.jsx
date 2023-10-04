@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+
 
 const id = '651abe794c96a3647338edf6'
 
@@ -9,6 +11,8 @@ const fetchThePokemon = async () => {
 }
 function PokemonProfile() {
     const [pokemon, setPokemon] = useState(null)
+    const params = useParams();
+    console.log(params);
 
     useEffect(() => {
         async function fetchPokemon() {
