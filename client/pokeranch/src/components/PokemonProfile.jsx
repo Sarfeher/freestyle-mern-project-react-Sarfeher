@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
+import './PokemonProfile.css'
 
 /* const id = '651abe794c96a3647338edf6'
  */
@@ -57,10 +58,10 @@ function PokemonProfile() {
 
 console.log(editedAttack);
     return (
-        <div>
-            {pokemon && <div key={pokemon._id}>
-                <h2>{pokemon.name}</h2>
-                <h3>{pokemon.nickName}</h3>
+        <div className="pokemon-profile-container">
+            {pokemon && <div key={pokemon._id} className="pokemon-data">
+                <h2>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
+                <h2>{pokemon.nickName}</h2>
                 {editingName
                     ? <div><input type="text" value={editedNickName} onChange={onTextChange} />
                         <button type="button" onClick={async () => {
@@ -70,11 +71,10 @@ console.log(editedAttack);
                         }} >Save</button>
                         <button onClick={cancelEdit}>Cancel</button></div>
                     : <button onClick={() => handleEdit(!editingName)}>Set nick name</button>}
-                <p>Hp: {pokemon.hp}</p>
-                <p>Attack: {pokemon.attack}</p>
-                <p>Defense: {pokemon.defense}</p>
-                <p>Xp: {pokemon.xp}</p>
-                <img src={pokemon.front} />
+                <h3>Hp: {pokemon.hp}</h3>
+                <h3>Attack: {pokemon.attack}</h3>
+                <h3>Defense: {pokemon.defense}</h3>
+                <h3>Xp: {pokemon.xp}</h3>
                 <div>
                     <button onClick={async () => {
                         const newHp = editedHp + 5
@@ -88,10 +88,17 @@ console.log(editedAttack);
                         setEditedAttack(editedAttack + 5)
                         await fetchToUpdatePokemon(id, undefined, undefined, newAttack)
                         setPokemon(await fetchThePokemon(id))
-                    }}>Caress me for extra Attack!</button>
+                    }}>Pet me for extra Attack!</button>
+                    
                 </div>
             </div>}
+            {pokemon && (
+                <div className="pokemon-image">
+                    <img src={pokemon.front} alt={pokemon.name} />
+                </div>
+            )}
         </div>
+        
     )
 }
 

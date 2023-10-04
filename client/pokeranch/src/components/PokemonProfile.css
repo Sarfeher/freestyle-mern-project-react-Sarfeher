@@ -1,0 +1,47 @@
+body {
+    background: url('./pictures/background.png');
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+img {image-rendering: pixelated;
+    height: 400px;
+    transform: translate(0%, 30%);
+  }
+/* Container for the entire Pokemon profile */
+.pokemon-profile-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  /* Left section containing Pokemon data and buttons */
+  .pokemon-data {
+    flex: 1;
+    margin-right: 20px;
+    font-size: 20px;
+    color: rgb(1, 1, 1);
+    background-color: rgb(255, 255, 255, 0.5);
+  }
+  
+  /* Right section containing the Pokemon image */
+  .pokemon-image {
+    flex: 1;
+  }
+  
+  /* Style for the input field */
+  .input-field {
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 100%;
+  }
+  
+  /* Style for the buttons */
+  .button {
+    margin-right: 10px;
+  }
+  
+  /* Apply styles to the image */
+
+  
