@@ -8,10 +8,18 @@ app.use(express.json())
 mongoose.connect("mongodb+srv://sarfeher:Toyotacorolla20201.8@sarfeher.hft4jys.mongodb.net/pokemon")
 
 
+
+app.get('/api/pokemon/:id', async (req, res) =>{
+    const pokemon = await Pokemon.findById(req.params.id);
+    console.log(pokemon);
+    res.json(pokemon)
+})
+
 app.get("api/ranch", (res,req)=>{
     const pokemon = Pokemon.find()
     console.log(pokemon)
 })
+
 
 
 
@@ -54,6 +62,8 @@ app.patch('/api/pokemon/fight/exp',(req, res)=>{
         { new: true, runValidators: true },  
         )
 })
+
+
 
 app.get('/api/pokemon/:id', async (req, res) =>{
     console.log(req.params.id);
