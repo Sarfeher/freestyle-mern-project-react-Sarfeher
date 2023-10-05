@@ -8,52 +8,60 @@ function FightSelect() {
     const [enemyPoke, setEnemyPoke] = useState(null);
     const [selectedPoke, setSelectedPoke] = useState(null);
     const [pokeList, setPokeList] = useState(null);
-useEffect(()=>{
-
-    const fetchPokeList = async () => {
-            const response = await fetch('/api/fight');
+    const [restart, setRestart] = useState(0);
+    useEffect(() => {
+        const abortController = new AbortController();
+        const fetchPokeList = async () => {
+            const response = await fetch('/api/fight',);
             const data = await response.json();
             setPokeList(data);
         }
         fetchPokeList();
-        pokeList ? console.log(pokeList)
-        : false
-    
-        
-    const enemyPokeID = Math.floor(Math.random() * 1018);
 
-    const fetchEnemyPoke = async (ID) => {
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${ID}`);
-        const jsonData = await response.json();
-        setEnemyPoke(jsonData);
-    };
-    fetchEnemyPoke(enemyPokeID);
-},[])
+        const enemyPokeID = Math.floor(Math.random() * 650);
 
-
-console.log(pokeList)
-
+        const fetchEnemyPoke = async (ID) => {
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${ID}`, { signal: abortController.signal });
+            const jsonData = await response.json();
+            setEnemyPoke(jsonData);
+        };
+        fetchEnemyPoke(enemyPokeID);
+        return () => {
+            abortController.abort();
+        }
+    }, [restart])
+    console.log(selectedPoke)
+    console.log(backToStart, ready)
+    const handleReset = () => {
+        setReady(false);
+        setEnemyPoke(null);
+        setPokeList(null);
+        setSelectedPoke(null);
+        setBackToStart(false);
+        setRestart(restart + 1);
+    }
     return (
         <>
 
-            {ready ?
+            {!backToStart &&
+                ready ?
                 (<ul>
 
-                    {pokeList ? pokeList.map((poke) => {
-                        return(
+                    {(pokeList && !selectedPoke) && pokeList.map((poke) => {
+                        return (
 
-                        <li key={poke._id} onClick={() => {setSelectedPoke(poke)}}>
-                            <h3>
-                                {poke.name}
-                            </h3>
-                            <img src={poke?.front} />
-                        </li>
+                            <li key={poke._id} onClick={() => { setSelectedPoke(poke) }}>
+                                <h3>
+                                    {poke.name}
+                                </h3>
+                                <img src={poke?.front} />
+                            </li>
                         )
                     })
-                        : selectedPoke ? <Fight poke={selectedPoke} enemyPoke={enemyPoke} onBackToStart={()=>{setBackToStart(true)}} />
-                            : <li>Loading...</li>
-                    }
 
+                    }
+                    {selectedPoke && <Fight poke={selectedPoke} enemyPoke={enemyPoke} onBackToStart={() => { handleReset() }} />
+                    }
                 </ul>)
                 : enemyPoke ? <div>
 
@@ -65,7 +73,8 @@ console.log(pokeList)
                         <li>Defence: {enemyPoke.stats[2].base_stat}</li>
                     </ul>
                     <div>Are you ready?</div>
-                    <button onClick={() => setReady(true)}> Yes!</button>
+                    <button onClick={() => 
+                    {setReady(true)}}> Yes!</button>
                 </div>
                     : <>Loading...</>
 

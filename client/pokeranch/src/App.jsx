@@ -9,6 +9,7 @@ function App() {
     <div> 
       <Link to="/ranch">Ranch</Link>
       <Link to="/pokemon">PokemonProfile</Link>
+      <Link to="/fight">Battle!</Link>
     </div>
   )
 }

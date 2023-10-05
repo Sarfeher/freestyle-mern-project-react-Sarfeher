@@ -31,14 +31,14 @@ app.get('/api/fight', async (req, res) =>{
   /*   res.json(pokeArray); */
     res.status(200).json(pokeArray)
 });
-app.post('/api/pokemon/fight/add',async (req, res)=>{
+app.post('/api/fight/add',async (req, res)=>{
     const name = req.body.name;
     const nickname = "";
     const front = req.body.front;
     const back = req.body.back;
     const hp = req.body.hp;
     const attack = req.body.attack;
-    const defence = req.body.defence;
+    const defense = req.body.defense;
     const xp = req.body.xp;
     const newPoke = new Pokemon({
         name,
@@ -47,19 +47,17 @@ app.post('/api/pokemon/fight/add',async (req, res)=>{
         back,
         hp,
         attack,
-        defence,
+        defense,
         xp,
     });
     await newPoke.save()
-   res.status(500).json({success: false})
+   res.status(200).json(newPoke)
 })
-app.patch('/api/pokemon/fight/exp',(req, res)=>{
-    const extraXP = req.body.extraXP;
-    Pokemon.findOneAndUpdate(
-        { _id: req.body._id },
-        { xp: xp + extraXP },
-        { new: true, runValidators: true },  
-        )
+app.patch('/api/fight/exp', async (req, res)=>{
+    const extraXP = parseInt(req.body.extraXP);
+    const updatedPoke = await Pokemon.findByIdAndUpdate(req.body._id, {xp: extraXP},{new:true})
+        res.status(200).json(updatedPoke)
+
 })
 
 
