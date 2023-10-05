@@ -94,7 +94,7 @@ console.log(editedAttack);
             </div>}
             {pokemon && (
                 <div className="pokemon-image">
-                    <img src={pokemon.front} alt={pokemon.name} />
+                    <img className="profilePic" src={pokemon.front} alt={pokemon.name} />
                 </div>
             )}
         </div>

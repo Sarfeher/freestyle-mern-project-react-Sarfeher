@@ -1,0 +1,31 @@
+body {
+    background: url('./pictures/background.png');
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.ranchPics {
+    image-rendering: pixelated;
+    height: 50px;
+    transform: translate(0%, 30%);
+}
+
+/* Style for the buttons */
+.button {
+    margin-right: 10px;
+}
+
+
+.pokemon{
+    position: absolute;
+    
+}
+/* animation-name: example;
+animation-duration: 4s; */
+  
+  .ranch{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }

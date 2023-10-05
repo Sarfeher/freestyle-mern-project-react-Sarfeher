@@ -5,7 +5,7 @@ body {
   background-repeat: no-repeat;
 }
 
-img {image-rendering: pixelated;
+.profilePic {image-rendering: pixelated;
     height: 400px;
     transform: translate(0%, 30%);
   }
