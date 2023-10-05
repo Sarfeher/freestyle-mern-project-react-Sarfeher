@@ -49,13 +49,10 @@ function FightSelect() {
     return (
         <>
 
-            {!backToStart &&
-                ready ?
+            {ready ?
                 (<ul>
 
-
                     {(pokeList && !selectedPoke) && pokeList.map((poke) => {
-
                         return (
 
                             <li key={poke._id} onClick={() => { setSelectedPoke(poke) }}>
@@ -67,15 +64,10 @@ function FightSelect() {
                         )
                     })
 
-                        : selectedPoke ? <Fight poke={selectedPoke} enemyPoke={enemyPoke} onBackToStart={() => { setBackToStart(true) }} />
-                            : <li>Loading...</li>
-                    }
-
                     }
                     {selectedPoke && <Fight poke={selectedPoke} enemyPoke={enemyPoke} onBackToStart={() => { handleReset() }} />
                     }
                 </ul>)
-
                 : enemyPoke ? <div className="pokemon-enemy-container">
                     <div className="enemy-data">
                         <h2>A wild {enemyPoke.name.charAt(0).toUpperCase() + enemyPoke.name.slice(1)} has appeared!</h2>
@@ -83,12 +75,11 @@ function FightSelect() {
                         <h3>HP: {enemyPoke.stats[0].base_stat}</h3>
                         <h3>Attack: {enemyPoke.stats[1].base_stat}</h3>
                         <h3>Defence: {enemyPoke.stats[2].base_stat}</h3>
-                    <button onClick={() => setReady(true)}> Lets fight with {enemyPoke.name.charAt(0).toUpperCase() + enemyPoke.name.slice(1)}!</button>
+                        <button onClick={() => setReady(true)}> Lets fight with {enemyPoke.name.charAt(0).toUpperCase() + enemyPoke.name.slice(1)}!</button>
                     </div>
                     <div className="enemy-image">
                         <img className="enemy-img" src={enemyPoke?.sprites.versions['generation-v']['black-white'].animated.front_default} />
                     </div>
-                    
 
                 </div>
                     : <>Loading...</>
