@@ -8,20 +8,18 @@ function FightSelect() {
     const [enemyPoke, setEnemyPoke] = useState(null);
     const [selectedPoke, setSelectedPoke] = useState(null);
     const [pokeList, setPokeList] = useState(null);
+useEffect(()=>{
 
     const fetchPokeList = async () => {
-        try {
-            const res = await fetch('/api/pokemon/fight', {
-                method: 'GET',
-            });
-            const data = await res.json();
+            const response = await fetch('/api/fight');
+            const data = await response.json();
             setPokeList(data);
-        } catch (error) {
-            console.log(error);
         }
-    }
-    fetchPokeList();
-
+        fetchPokeList();
+        pokeList ? console.log(pokeList)
+        : false
+    
+        
     const enemyPokeID = Math.floor(Math.random() * 1018);
 
     const fetchEnemyPoke = async (ID) => {
@@ -30,8 +28,10 @@ function FightSelect() {
         setEnemyPoke(jsonData);
     };
     fetchEnemyPoke(enemyPokeID);
+},[])
 
 
+console.log(pokeList)
 
     return (
         <>
@@ -40,13 +40,15 @@ function FightSelect() {
                 (<ul>
 
                     {pokeList ? pokeList.map((poke) => {
+                        return(
 
-                        <li key={poke._id} onClick={setSelectedPoke(poke)}>
+                        <li key={poke._id} onClick={() => {setSelectedPoke(poke)}}>
                             <h3>
                                 {poke.name}
                             </h3>
                             <img src={poke?.front} />
                         </li>
+                        )
                     })
                         : selectedPoke ? <Fight poke={selectedPoke} enemyPoke={enemyPoke} onBackToStart={()=>{setBackToStart(true)}} />
                             : <li>Loading...</li>

@@ -82,7 +82,7 @@ function Fight(props) {
     }
 
     return (
-        <>
+        {/* <>
             {backToMain ? 
                 : enemyPokemonHP <= 0 || ourPokemonHP <= 0 ?
                     ourPokemonHP <= 0 ? <>You Lost!
@@ -105,7 +105,7 @@ function Fight(props) {
                         <img src={ourPokemon?.sprites.versions['generation-v']['black-white'].animated.back_default} />
                     </>
             }
-        </>
+        </> */}
     );
 }
 export default Fight;
