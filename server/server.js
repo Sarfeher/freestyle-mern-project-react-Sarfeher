@@ -15,16 +15,6 @@ app.get('/api/pokemon/:id', async (req, res) =>{
     res.json(pokemon)
 })
 
-app.get("api/ranch", (res,req)=>{
-    const pokemon = Pokemon.find({})
-
-})
-
-
-
-
-
-
 app.get("/api/ranch", async(req, res) => {
     const AllPokemon = await Pokemon.find({})
     console.log(AllPokemon)
