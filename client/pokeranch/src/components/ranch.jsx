@@ -1,25 +1,38 @@
-import React, { useEffect, useState } from "react";
-import {Link} from "react-router-dom";
+import { useEffect, useState } from "react";
+import PokemonList from "./PokemonList";
+import "./Ranch.css"
+import RanchPokemon from "./RanchPokemon";
 
 
 
 function Ranch() {
-    const [allPokemon, setAllPokemon] = useState(null);
+    const [allPokemon, setAllPokemon] = useState("");
+    const [pokemonList, setPokemonList] = useState(null)
 
-    // useEffect(() => {
-    //     const fetchPokemon = async()=>{
-    //     const response = fetch("api/ranch")
-    //     const data = await response.json();
-    //     setAllPokemon(data)
-    // }
-    // fetchPokemon()
-    // }, [])
 
-        // {allPokemon? allPokemon.map((pokemon) => pokemon.name) : "loading" }
-    return (<div>
-        <Link to="/pokemon">Pokemon Profile</Link>
-    </div>)
+    useEffect(() => {
+        const fetchPokemon = async () => {
+            const response = await fetch("/api/ranch")
+            const data = await response.json();
+            setAllPokemon(data)
+            console.log(data)
+        }
+        fetchPokemon()
+    }, [])
+
+
+
+
+
+
+
+    return (<div className="ranch">
+        <div className="buttonContainer"><button onClick={() => setPokemonList(!pokemonList)} className="showAll">show all</button>
+            {pokemonList && <PokemonList />}</div>
+
+        <div className="pokemonContainer">{allPokemon && allPokemon.map(pokemon => <RanchPokemon key={pokemon._id} pokemon={pokemon} />)
+        }</div>
+    </div >)
 }
-
 
 export default Ranch;

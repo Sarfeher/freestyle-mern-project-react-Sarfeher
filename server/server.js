@@ -15,16 +15,12 @@ app.get('/api/pokemon/:id', async (req, res) =>{
     res.json(pokemon)
 })
 
-app.get("api/ranch", (res,req)=>{
-    const pokemon = Pokemon.find({})
-
+app.get("/api/ranch", async(req, res) => {
+    const AllPokemon = await Pokemon.find({})
+    console.log(AllPokemon)
+    res.send(AllPokemon)
+    res.status(200)
 })
-
-
-
-
-
-
 
 app.get('/api/fight', async (req, res) =>{
     const pokeArray = await Pokemon.find({});
@@ -71,6 +67,11 @@ app.get('/api/pokemon/:id', async (req, res) =>{
 app.patch('/api/pokemon/:id', async (req, res) => {
     const pokemon = await Pokemon.findByIdAndUpdate(req.params.id, req.body, {new:true});
     res.status(200).json(pokemon)
+})
+
+app.delete('/api/pokemon', async(req, res)=>{
+    await Pokemon.findByIdAndDelete(req.pokemon.id)
+    res.status(200)
 })
 
 
