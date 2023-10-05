@@ -27,7 +27,7 @@ function Fight(props) {
             if (enemyPokemonHP > 0 && ourPokemonHP > 0) {
                 setWeAreTheAttacker(!weAreTheAttacker);
             }
-            
+
         }, 500);
     }, [weAreTheAttacker])
 
@@ -85,27 +85,32 @@ function Fight(props) {
             {
                 enemyPokemonHP <= 0 || ourPokemonHP <= 0 ?
                     ourPokemonHP <= 0 ?
-                        <>
-                            <h2>You Lost!</h2>
-                            <button onClick={()=>{props.onBackToStart();
-                            updateXp();
-                            
+                        <div className="endScene">
+                            <h1>You Lost!</h1>
+                            <button onClick={() => {
+                                props.onBackToStart();
+                                updateXp();
+
                             }}>Back to start!</button>
-                        </>
-                        : enemyPokemonHP <= 0 ? <>
-                            You won!
+                        </div>
+                        : enemyPokemonHP <= 0 ? <div className="endScene">
+                          <h1>  You won! </h1>
                             <button onClick={() => {
                                 capturePokemon();
                                 props.onBackToStart();
                                 updateXp();
                             }}>Capture!</button>
-                        </>
+                        </div>
                             : false
                     : <>
-                        <h2>{enemyPoke.name.toUpperCase()} {enemyPokemonHP} / {enemyPoke.stats[0].base_stat}</h2>
-                        <img src={enemyPoke?.sprites.versions['generation-v']['black-white'].animated.front_default} />
-                        <h2>{ourPoke.name.toUpperCase()} {ourPokemonHP} / {ourPoke.hp}</h2>
-                        <img src={ourPoke?.back} />
+                        <div>
+                            <h2 className="fightName">{enemyPoke.name.toUpperCase()} {enemyPokemonHP} / {enemyPoke.stats[0].base_stat}</h2>
+                            <img className="fightingEnemy" src={enemyPoke?.sprites.versions['generation-v']['black-white'].animated.front_default} />
+                        </div>
+                        <div>
+                            <img className="fightingOur" src={ourPoke?.back} />
+                            <h2 className="fightName">{ourPoke.name.toUpperCase()} {ourPokemonHP} / {ourPoke.hp}</h2>
+                        </div>
                     </>
             }
         </>

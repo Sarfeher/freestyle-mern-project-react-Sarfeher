@@ -69,9 +69,9 @@ app.patch('/api/pokemon/:id', async (req, res) => {
     res.status(200).json(pokemon)
 })
 
-app.delete('/api/pokemon', async(req, res)=>{
-    await Pokemon.findByIdAndDelete(req.pokemon.id)
-    res.status(200)
+app.delete('/api/pokemon/:id', async(req, res)=>{
+    const poke = await Pokemon.findByIdAndDelete(req.params.id)
+    res.status(200).json(poke)
 })
 
 

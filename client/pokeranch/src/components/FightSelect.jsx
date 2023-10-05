@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Fight from "./Fight";
+import { Link } from "react-router-dom";
 
 
 function FightSelect() {
@@ -50,24 +51,25 @@ function FightSelect() {
         <>
 
             {ready ?
-                (<ul>
+                (<div className="ourPokemonContainer">
+                    <div>
+                        {(pokeList && !selectedPoke) && pokeList.map((poke) => {
+                            return (
 
-                    {(pokeList && !selectedPoke) && pokeList.map((poke) => {
-                        return (
+                                <div className="pickOurPokemon" key={poke._id} onClick={() => { setSelectedPoke(poke) }}>
+                                    <h3>
+                                        {poke.nickName ? poke.nickName : poke.name}
+                                    </h3>
+                                    <img className="ourPokeSelect" src={poke?.front} />
+                                </div>
+                            )
+                        })
 
-                            <li key={poke._id} onClick={() => { setSelectedPoke(poke) }}>
-                                <h3>
-                                    {poke.name}
-                                </h3>
-                                <img src={poke?.front} />
-                            </li>
-                        )
-                    })
-
-                    }
-                    {selectedPoke && <Fight poke={selectedPoke} enemyPoke={enemyPoke} onBackToStart={() => { handleReset() }} />
-                    }
-                </ul>)
+                        }
+                        {selectedPoke && <Fight poke={selectedPoke} enemyPoke={enemyPoke} onBackToStart={() => { handleReset() }} />
+                        }
+                    </div>
+                </div>)
                 : enemyPoke ? <div className="pokemon-enemy-container">
                     <div className="enemy-data">
                         <h2>A wild {enemyPoke.name.charAt(0).toUpperCase() + enemyPoke.name.slice(1)} has appeared!</h2>
@@ -76,6 +78,8 @@ function FightSelect() {
                         <h3>Attack: {enemyPoke.stats[1].base_stat}</h3>
                         <h3>Defence: {enemyPoke.stats[2].base_stat}</h3>
                         <button onClick={() => setReady(true)}> Lets fight with {enemyPoke.name.charAt(0).toUpperCase() + enemyPoke.name.slice(1)}!</button>
+                        <button><Link to="/ranch">Go to Ranch</Link></button>
+
                     </div>
                     <div className="enemy-image">
                         <img className="enemy-img" src={enemyPoke?.sprites.versions['generation-v']['black-white'].animated.front_default} />
