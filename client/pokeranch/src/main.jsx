@@ -5,6 +5,7 @@ import './index.css'
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Ranch from './components/ranch.jsx';
 import PokemonProfile from './components/PokemonProfile.jsx';
+import FightSelect from './components/FightSelect.jsx';
 
 
 
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/pokemon/:id",
     element: <PokemonProfile />
+  },
+  {
+    path:"/fight",
+    element:<FightSelect />
   }
 ])
 

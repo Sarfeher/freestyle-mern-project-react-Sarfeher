@@ -11,13 +11,13 @@ mongoose.connect("mongodb+srv://sarfeher:Toyotacorolla20201.8@sarfeher.hft4jys.m
 
 app.get('/api/pokemon/:id', async (req, res) =>{
     const pokemon = await Pokemon.findById(req.params.id);
-    console.log(pokemon);
+
     res.json(pokemon)
 })
 
 app.get("api/ranch", (res,req)=>{
-    const pokemon = Pokemon.find()
-    console.log(pokemon)
+    const pokemon = Pokemon.find({})
+
 })
 
 
@@ -26,12 +26,12 @@ app.get("api/ranch", (res,req)=>{
 
 
 
-app.get('/api/pokemon/fight',(req, res) =>{
-    const pokeArray = Pokemon.find({});
-    res.json(pokeArray);
-    res.status(200).json({success: true})
+app.get('/api/fight', async (req, res) =>{
+    const pokeArray = await Pokemon.find({});
+  /*   res.json(pokeArray); */
+    res.status(200).json(pokeArray)
 });
-app.post('/api/pokemon/fight/add',(req, res)=>{
+app.post('/api/pokemon/fight/add',async (req, res)=>{
     const name = req.body.name;
     const nickname = "";
     const front = req.body.front;
@@ -50,9 +50,8 @@ app.post('/api/pokemon/fight/add',(req, res)=>{
         defence,
         xp,
     });
-    newPoke.save()
-    .then(console.log(newPoke))
-    .catch(err => res.status(500).json({success: false}))
+    await newPoke.save()
+   res.status(500).json({success: false})
 })
 app.patch('/api/pokemon/fight/exp',(req, res)=>{
     const extraXP = req.body.extraXP;
@@ -66,7 +65,7 @@ app.patch('/api/pokemon/fight/exp',(req, res)=>{
 
 
 app.get('/api/pokemon/:id', async (req, res) =>{
-    console.log(req.params.id);
+   
     const pokemon = await Pokemon.findById(req.params.id);
     res.status(200).json(pokemon)
 })
