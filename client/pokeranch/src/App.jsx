@@ -6,8 +6,9 @@ function App() {
 
   return (
     <div> 
-      <button><Link to="/ranch">Go to Ranch</Link></button>
-      <button><Link to="/fight">Go to Fight</Link></button>
+      <Link to="/ranch">Ranch</Link>
+      <Link to="/pokemon">PokemonProfile</Link>
+      <Link to="/fight">Battle!</Link>
     </div>
   )
 }
