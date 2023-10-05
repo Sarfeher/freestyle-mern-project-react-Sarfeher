@@ -74,6 +74,11 @@ app.patch('/api/pokemon/:id', async (req, res) => {
     res.status(200).json(pokemon)
 })
 
+app.delete('/api/pokemon', async(req, res)=>{
+    await Pokemon.findByIdAndDelete(req.pokemon.id)
+    res.status(200)
+})
+
 
 app.listen(3000, () => {
     console.log('Im in! Open this link: http://127.0.0.1:3000');
