@@ -55,12 +55,12 @@ function FightSelect() {
                     {(pokeList && !selectedPoke) && pokeList.map((poke) => {
                         return (
 
-                            <li key={poke._id} onClick={() => { setSelectedPoke(poke) }}>
+                            <div key={poke._id} onClick={() => { setSelectedPoke(poke) }}>
                                 <h3>
                                     {poke.name}
                                 </h3>
-                                <img src={poke?.front} />
-                            </li>
+                                <img className="fightPic" src={poke?.front} />
+                            </div>
                         )
                     })
 

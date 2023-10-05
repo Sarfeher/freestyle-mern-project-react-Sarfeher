@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./Fight.css"
 /* TODO
 render/2
 make site work
