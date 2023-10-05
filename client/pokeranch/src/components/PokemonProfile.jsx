@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import './PokemonProfile.css'
+import './pictures/hart.gif'
 
 /* const id = '651abe794c96a3647338edf6'
  */
@@ -31,6 +32,7 @@ function PokemonProfile() {
     const [editedHp, setEditedHp] = useState(null)
     const [editedAttack, setEditedAttack] = useState(null)
     const [editingName, setEditingName] = useState(false)
+    const [displayHeart, setDisplayHeart] = useState(false)
 
     useEffect(() => {
         async function fetchPokemon(id) {
@@ -56,7 +58,12 @@ function PokemonProfile() {
         setEditedNickName(e.target.value)
     }
 
-console.log(editedAttack);
+
+    /* function handleHeartDisplay(displayHeart) {
+        displayHeart ? 
+
+    } */
+    console.log(editedAttack);
     return (
         <div className="pokemon-profile-container">
             {pokemon && <div key={pokemon._id} className="pokemon-data">
@@ -82,23 +89,36 @@ console.log(editedAttack);
                         await fetchToUpdatePokemon(id, undefined, newHp)
                         setPokemon(await fetchThePokemon(id)
                         )
+                        setDisplayHeart(true)
+                        setTimeout(() => {
+                            setDisplayHeart(false)
+                        }, "2000")
                     }}>Feed me for extra Hp!</button>
                     <button onClick={async () => {
                         const newAttack = editedAttack + 5
                         setEditedAttack(editedAttack + 5)
                         await fetchToUpdatePokemon(id, undefined, undefined, newAttack)
                         setPokemon(await fetchThePokemon(id))
+                        setDisplayHeart(true)
+                        setTimeout(() => {
+                            setDisplayHeart(false)
+                        }, "2000")
                     }}>Pet me for extra Attack!</button>
-                    
+                    <Link to="/ranch">
+                        <button> Go back to the ranch</button>
+                    </Link>
                 </div>
             </div>}
             {pokemon && (
                 <div className="pokemon-image">
-                    <img className="profilePic" src={pokemon.front} alt={pokemon.name} />
+                    <div className="image-container">
+                        {displayHeart && <img className="heart" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWxja3U0M3Ntem5xd2pqaW84aTJoZ2xiZWJ1OXk2Z3h1djVtOGlzeiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Vzebc2BnJ4HZoCDSQy/giphy.gif" />}
+                        <img className="profile-img" src={pokemon.front} alt={pokemon.name} />
+                    </div>
                 </div>
             )}
         </div>
-        
+
     )
 }
 
