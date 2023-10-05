@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react";
+import "./Ranch.css"
 
 
 
@@ -7,7 +8,7 @@ import { useEffect, useState } from "react";
 
 
 function RanchPokemon({ pokemon }) {
-    const [position, setPosition] = useState({ left: getRandomNumber(-400, 400), top: getRandomNumber(0, 400) })
+    const [position, setPosition] = useState({ left: getRandomNumber(300, 1200), top: getRandomNumber(200, 500) })
     const [scaleX, setScaleX] = useState({ transform: `scaleX(${1})` })
     function getRandomNumber(min, max) {
         min = Math.ceil(min);
@@ -36,7 +37,6 @@ function RanchPokemon({ pokemon }) {
     }, []);
 
     const style = {
-        position: "relative",
         left: `${position.left}px`,
         top: `${position.top}px`,
 
@@ -44,7 +44,7 @@ function RanchPokemon({ pokemon }) {
 
     return (
         <div className="pokemon" style={style} key={pokemon._id}>
-            <div className="pokemonNickname" name={pokemon._id} >{pokemon.nickName}
+            <div className="pokemonNickname" name={pokemon._id} >{pokemon.nickName? pokemon.nickName.toUpperCase() : pokemon.name.toUpperCase() }
             </div>
             <Link to={`/pokemon/${pokemon._id}`}><img style={scaleX} className="ranchPics" name={pokemon._id} src={pokemon.front}>
             </img>

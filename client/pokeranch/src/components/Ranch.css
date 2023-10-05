@@ -17,15 +17,64 @@ body {
 }
 
 
-.pokemon{
+.pokemon {
     position: absolute;
-    
+
 }
-/* animation-name: example;
-animation-duration: 4s; */
-  
-  .ranch{
+
+
+
+.showAll {
+justify-content: flex-start;
+}
+
+.pokemonNickname {
+    width: 10vw;
+    font-size: 16px;
+    color: rgb(1, 1, 1);
+    border: 1px;
+    border-radius: 25px;
+    background-color: rgb(255, 255, 255, 0.5);
+}
+
+.pokemonList {
+    max-height: 35vw;
+    background-color: rgb(255, 255, 255, 0.5);
+    overflow-y: scroll;
+    width: 20vh;
+}
+
+.listedPokemon {
+    justify-content: center;
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-  }
+    flex-direction: column;
+
+}
+
+.listedPokemonNickname{
+    font-size: 20px;
+    color: rgb(1, 1, 1);
+    border: 1px;
+    background-color: rgb(255, 255, 255, 0.5);
+}
+
+
+.ranch {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.buttonContainer {
+    flex: 1;
+    margin-right: 20px;
+    justify-content: flex-start;
+    max-width: 20vh;
+}
+
+
+.pokemonContainer {
+    flex: 1;
+    width: 40vh;
+    height: 40vh;
+}

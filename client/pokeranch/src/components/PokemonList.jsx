@@ -1,5 +1,6 @@
 import { useEffect, useState} from "react";
 import { Link } from "react-router-dom";
+import "./Ranch.css"
 
 
 
@@ -15,9 +16,9 @@ function PokemonList() {
         fetchPokemon()
     }, [])
 
-    return (<div>
+    return (<div className="pokemonList">
         {allPokemon && allPokemon.map(pokemon => <div className="listedPokemon" key={pokemon._id}>
-        <div name={pokemon._id} >{pokemon.nickName}
+        <div className="listedPokemonNickname" name={pokemon._id} >{pokemon.nickName? pokemon.nickName : pokemon.name }
         </div>
         <Link to={`/pokemon/${pokemon._id}`}><img name={pokemon._id} src={pokemon.front}>
         </img>
