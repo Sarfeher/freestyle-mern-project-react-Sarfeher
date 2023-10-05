@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
+import './PokemonProfile.css'
+import './pictures/hart.gif'
 
 /* const id = '651abe794c96a3647338edf6'
  */
@@ -30,6 +32,7 @@ function PokemonProfile() {
     const [editedHp, setEditedHp] = useState(null)
     const [editedAttack, setEditedAttack] = useState(null)
     const [editingName, setEditingName] = useState(false)
+    const [displayHeart, setDisplayHeart] = useState(false)
 
     useEffect(() => {
         async function fetchPokemon(id) {
@@ -55,12 +58,17 @@ function PokemonProfile() {
         setEditedNickName(e.target.value)
     }
 
-console.log(editedAttack);
+
+    /* function handleHeartDisplay(displayHeart) {
+        displayHeart ? 
+
+    } */
+    console.log(editedAttack);
     return (
-        <div>
-            {pokemon && <div key={pokemon._id}>
-                <h2>{pokemon.name}</h2>
-                <h3>{pokemon.nickName}</h3>
+        <div className="pokemon-profile-container">
+            {pokemon && <div key={pokemon._id} className="pokemon-data">
+                <h2>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
+                <h2>{pokemon.nickName}</h2>
                 {editingName
                     ? <div><input type="text" value={editedNickName} onChange={onTextChange} />
                         <button type="button" onClick={async () => {
@@ -70,11 +78,10 @@ console.log(editedAttack);
                         }} >Save</button>
                         <button onClick={cancelEdit}>Cancel</button></div>
                     : <button onClick={() => handleEdit(!editingName)}>Set nick name</button>}
-                <p>Hp: {pokemon.hp}</p>
-                <p>Attack: {pokemon.attack}</p>
-                <p>Defense: {pokemon.defense}</p>
-                <p>Xp: {pokemon.xp}</p>
-                <img src={pokemon.front} />
+                <h3>Hp: {pokemon.hp}</h3>
+                <h3>Attack: {pokemon.attack}</h3>
+                <h3>Defense: {pokemon.defense}</h3>
+                <h3>Xp: {pokemon.xp}</h3>
                 <div>
                     <button onClick={async () => {
                         const newHp = editedHp + 5
@@ -82,16 +89,36 @@ console.log(editedAttack);
                         await fetchToUpdatePokemon(id, undefined, newHp)
                         setPokemon(await fetchThePokemon(id)
                         )
+                        setDisplayHeart(true)
+                        setTimeout(() => {
+                            setDisplayHeart(false)
+                        }, "2000")
                     }}>Feed me for extra Hp!</button>
                     <button onClick={async () => {
                         const newAttack = editedAttack + 5
                         setEditedAttack(editedAttack + 5)
                         await fetchToUpdatePokemon(id, undefined, undefined, newAttack)
                         setPokemon(await fetchThePokemon(id))
-                    }}>Caress me for extra Attack!</button>
+                        setDisplayHeart(true)
+                        setTimeout(() => {
+                            setDisplayHeart(false)
+                        }, "2000")
+                    }}>Pet me for extra Attack!</button>
+                    <Link to="/ranch">
+                        <button> Go back to the ranch</button>
+                    </Link>
                 </div>
             </div>}
+            {pokemon && (
+                <div className="pokemon-image">
+                    <div className="image-container">
+                        {displayHeart && <img className="heart" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWxja3U0M3Ntem5xd2pqaW84aTJoZ2xiZWJ1OXk2Z3h1djVtOGlzeiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Vzebc2BnJ4HZoCDSQy/giphy.gif" />}
+                        <img className="profile-img" src={pokemon.front} alt={pokemon.name} />
+                    </div>
+                </div>
+            )}
         </div>
+
     )
 }
 
