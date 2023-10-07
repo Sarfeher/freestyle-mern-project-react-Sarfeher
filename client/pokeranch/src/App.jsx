@@ -5,7 +5,7 @@ function App() {
 
 
   return (
-    <div> 
+    <div className='endScene'> 
       <button><Link to="/ranch">Go to Ranch</Link></button>
       <button><Link to="/fight">Go to Fight</Link></button>
     </div>

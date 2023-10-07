@@ -3,13 +3,9 @@ import { useEffect, useState } from "react";
 import "./Ranch.css"
 
 
-
-
-
-
 function RanchPokemon({ pokemon }) {
     const [position, setPosition] = useState({ left: getRandomNumber(300, 1200), top: getRandomNumber(200, 500) })
-    const [scaleX, setScaleX] = useState({ transform: `scaleX(${1})` })
+    const [scaleX, setScaleX] = useState({ transform: 'scaleX(1)' })
     function getRandomNumber(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);

@@ -78,7 +78,7 @@ function FightSelect() {
                         <h3>Attack: {enemyPoke.stats[1].base_stat}</h3>
                         <h3>Defence: {enemyPoke.stats[2].base_stat}</h3>
                         <button onClick={() => setReady(true)}> Lets fight with {enemyPoke.name.charAt(0).toUpperCase() + enemyPoke.name.slice(1)}!</button>
-                        <button><Link to="/ranch">Go to Ranch</Link></button>
+                        <Link to="/ranch"><button>Go to Ranch</button></Link>
 
                     </div>
                     <div className="enemy-image">

@@ -5,7 +5,6 @@ import RanchPokemon from "./RanchPokemon";
 import { Link } from "react-router-dom";
 
 
-
 function Ranch() {
     const [allPokemon, setAllPokemon] = useState("");
     const [pokemonList, setPokemonList] = useState(null)
@@ -20,11 +19,6 @@ function Ranch() {
         }
         fetchPokemon()
     }, [])
-
-
-
-
-
 
 
     return (<div className="ranch">
