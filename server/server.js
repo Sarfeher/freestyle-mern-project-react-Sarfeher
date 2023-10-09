@@ -6,6 +6,11 @@ const app = express()
 app.use(express.json())
 
 mongoose.connect("mongodb+srv://sarfeher:Toyotacorolla20201.8@sarfeher.hft4jys.mongodb.net/pokemon")
+.then(()=>{
+    app.listen(3000, () => {
+        console.log('Im in! Open this link: http://127.0.0.1:3000');
+    })
+})
 
 
 
@@ -29,7 +34,7 @@ app.get('/api/fight', async (req, res) =>{
 });
 app.post('/api/fight/add',async (req, res)=>{
     const name = req.body.name;
-    const nickname = "";
+    const nickName = "";
     const front = req.body.front;
     const back = req.body.back;
     const hp = req.body.hp;
@@ -38,7 +43,7 @@ app.post('/api/fight/add',async (req, res)=>{
     const xp = req.body.xp;
     const newPoke = new Pokemon({
         name,
-        nickname,
+        nickName,
         front,
         back,
         hp,
@@ -69,12 +74,9 @@ app.patch('/api/pokemon/:id', async (req, res) => {
     res.status(200).json(pokemon)
 })
 
-app.delete('/api/pokemon', async(req, res)=>{
-    await Pokemon.findByIdAndDelete(req.pokemon.id)
-    res.status(200)
+app.delete('/api/pokemon/:id', async(req, res)=>{
+    const poke = await Pokemon.findByIdAndDelete(req.params.id)
+    res.status(200).json(poke)
 })
 
 
-app.listen(3000, () => {
-    console.log('Im in! Open this link: http://127.0.0.1:3000');
-})

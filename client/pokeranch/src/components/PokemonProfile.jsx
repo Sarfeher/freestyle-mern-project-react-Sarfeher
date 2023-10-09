@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom"
 import './PokemonProfile.css'
-import './pictures/hart.gif'
+import hart from'./pictures/hart.gif'
 
 /* const id = '651abe794c96a3647338edf6'
  */
@@ -11,17 +11,24 @@ async function fetchThePokemon(id) {
     return pokemon
 }
 
-async function fetchToUpdatePokemon(id, nickName, hp, attack) {
+async function fetchToUpdatePokemon(id, updates) {
+    const {editedNickName, newHp, newAttack} = updates
     await fetch(`/api/pokemon/${id}`, {
         method: 'PATCH',
         headers: {
             'Content-type': 'application/json'
         },
         body: JSON.stringify({
-            'nickName': nickName,
-            'hp': hp,
-            'attack': attack
+            'nickName': editedNickName,
+            'hp': newHp,
+            'attack': newAttack
         })
+    })
+}
+
+async function deletePokemon(id) {
+    await fetch(`/api/pokemon/${id}`, {
+        method: 'DELETE'
     })
 }
 function PokemonProfile() {
@@ -67,17 +74,18 @@ function PokemonProfile() {
     return (
         <div className="pokemon-profile-container">
             {pokemon && <div key={pokemon._id} className="pokemon-data">
+            <button onClick={async ()=> await deletePokemon(id)}> <Link to = "/ranch"> ♻️ Release to the wild</Link></button>
                 <h2>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</h2>
                 <h2>{pokemon.nickName}</h2>
                 {editingName
                     ? <div><input type="text" value={editedNickName} onChange={onTextChange} />
                         <button type="button" onClick={async () => {
-                            await fetchToUpdatePokemon(id, editedNickName),
+                            await fetchToUpdatePokemon(id, {editedNickName}),
                                 setEditingName(false),
                                 setPokemon(await fetchThePokemon(id))
                         }} >Save</button>
                         <button onClick={cancelEdit}>Cancel</button></div>
-                    : <button onClick={() => handleEdit(!editingName)}>Set nick name</button>}
+                    : <button onClick={() => handleEdit(!editingName)}>✍️ Set nick name</button>}
                 <h3>Hp: {pokemon.hp}</h3>
                 <h3>Attack: {pokemon.attack}</h3>
                 <h3>Defense: {pokemon.defense}</h3>
@@ -86,35 +94,35 @@ function PokemonProfile() {
                     <button onClick={async () => {
                         const newHp = editedHp + 5
                         setEditedHp(editedHp + 5)
-                        await fetchToUpdatePokemon(id, undefined, newHp)
+                        await fetchToUpdatePokemon(id, {newHp})
                         setPokemon(await fetchThePokemon(id)
                         )
                         setDisplayHeart(true)
                         setTimeout(() => {
                             setDisplayHeart(false)
                         }, "2000")
-                    }}>Feed me for extra Hp!</button>
+                    }}>🍔 Feed me for extra Hp!</button>
                     <button onClick={async () => {
                         const newAttack = editedAttack + 5
                         setEditedAttack(editedAttack + 5)
-                        await fetchToUpdatePokemon(id, undefined, undefined, newAttack)
+                        await fetchToUpdatePokemon(id, {newAttack})
                         setPokemon(await fetchThePokemon(id))
                         setDisplayHeart(true)
                         setTimeout(() => {
                             setDisplayHeart(false)
                         }, "2000")
-                    }}>Pet me for extra Attack!</button>
+                    }}>💓 Pet me for extra Attack!</button>
                     <Link to="/ranch">
-                        <button> Go back to the ranch</button>
+                        <button>🏠 Go back to the ranch</button>
                     </Link>
                 </div>
             </div>}
             {pokemon && (
                 <div className="pokemon-image">
                     <div className="image-container">
-                        {displayHeart && <img className="heart" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWxja3U0M3Ntem5xd2pqaW84aTJoZ2xiZWJ1OXk2Z3h1djVtOGlzeiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Vzebc2BnJ4HZoCDSQy/giphy.gif" />}
+                        {displayHeart && <img className="heart" src={hart} />}
                         <img className="profile-img" src={pokemon.front} alt={pokemon.name} />
-                    </div>
+                    </div> 
                 </div>
             )}
         </div>

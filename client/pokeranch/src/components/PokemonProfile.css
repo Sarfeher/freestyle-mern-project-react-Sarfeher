@@ -24,11 +24,14 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 20px;
+    padding-top: 20vh;
   }
 .pokemon-enemy-container {
     display: flex;
     justify-content: space-between;
     padding: 20px;
+    padding-top: 25vh;
+
   }
   
   /* Left section containing Pokemon data and buttons */
@@ -44,7 +47,9 @@ body {
     margin-right: 20px;
     font-size: 20px;
     color: rgb(255, 255, 255);
-    background-color: rgba(234, 13, 13, 0.8);
+    background-color: #898990;
+background-image: linear-gradient(43deg, #898990 0%, #bf3b5e 40%, #f91010 100%);
+
   }
   
   /* Right section containing the Pokemon image */
@@ -73,6 +78,56 @@ body {
     left: 100;
     width: 100px;
     height: auto;
+  }
+
+  .pickOurPokemon {
+    background-color: rgb(255, 255, 255, 0.5);
+    max-width: 40vh;
+  }
+
+  .ourPokemonContainer {
+    display: flex;
+    justify-content: center;
+  }
+
+  .ourPokeSelect {
+    image-rendering: pixelated;
+    height: 100px;
+    transform: translate(0%, 0%);
+    padding: 30px;
+  }
+
+  .fightingEnemy {
+    image-rendering: pixelated;
+    height: 300px;
+    transform: translate(0%, 0%);
+    padding: 30px;
+  }
+
+  .fightingOur {
+    image-rendering: pixelated;
+    height: 300px;
+    transform: translate(0%, 0%);
+    padding: 30px;
+  }
+
+  .fightName{
+    width: 10vw;
+    font-size: 16px;
+    color: rgb(1, 1, 1);
+    border: 1px;
+    border-radius: 25px;
+    background-color: rgb(255, 255, 255, 0.8);
+  }
+
+  .endScene{
+    flex: 1;
+    margin: 1px;
+    padding: 20%;
+    font-size: 20px;
+    color: rgb(1, 1, 1);
+    background-color: rgb(255, 255, 255, 0.5);
+    border-radius: 7%;
   }
   /* Apply styles to the image */
 
