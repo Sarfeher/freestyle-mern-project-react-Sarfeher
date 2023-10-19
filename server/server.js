@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import Pokemon from "./model/Pokemon.js";
+import PokemonTrainer from "./model/profile.model.js"
 
 const app = express()
 app.use(express.json())
@@ -12,12 +13,33 @@ mongoose.connect("mongodb+srv://sarfeher:Toyotacorolla20201.8@sarfeher.hft4jys.m
     })
 })
 
+/* PokemonTrainer.create({
+    name: 'Bálint',
+    age: "23 ",
+   
+},
+{
+    name: 'Zsolti',
+    age: "27 ",
+   
+},
+{
+    name: 'Krisztián',
+    age: "33 ",
 
+}
+)
+ */
 
 app.get('/api/pokemon/:id', async (req, res) =>{
     const pokemon = await Pokemon.findById(req.params.id);
 
     res.json(pokemon)
+})
+
+app.get('/api/trainers/', async (req, res) => {
+    const trainers = await PokemonTrainer.find();
+    res.json(trainers)
 })
 
 app.get("/api/ranch", async(req, res) => {
