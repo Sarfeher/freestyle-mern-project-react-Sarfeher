@@ -42,9 +42,14 @@ app.get('/api/trainers/', async (req, res) => {
     res.json(trainers)
 })
 
+app.get('/api/trainers/:trainerId', async (req, res) =>{
+    const id = req.params.trainerId;
+    const trainer = await PokemonTrainer.findById(id).populate('pokemon');
+    res.json(trainer);
+})
+
 app.get("/api/ranch", async(req, res) => {
     const AllPokemon = await Pokemon.find({})
-    console.log(AllPokemon)
     res.send(AllPokemon)
     res.status(200)
 })
@@ -75,6 +80,19 @@ app.post('/api/fight/add',async (req, res)=>{
     });
     await newPoke.save()
    res.status(200).json(newPoke)
+})
+
+app.post('/api/trainers/:trainerId', async (req, res, next)=>{
+    const trainerId = req.params.trainerId;
+    const pokeId = req.body.pokeId;
+    try{
+        const trainer = await PokemonTrainer.findById(trainerId)
+        trainer.pokemon.push(pokeId);
+        trainer.save();
+        res.json(trainer);
+    }catch(err){
+        return next(err);
+    }
 })
 app.patch('/api/fight/exp', async (req, res)=>{
     const extraXP = parseInt(req.body.extraXP);
