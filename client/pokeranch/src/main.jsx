@@ -6,6 +6,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Ranch from './components/ranch.jsx';
 import PokemonProfile from './components/PokemonProfile.jsx';
 import FightSelect from './components/FightSelect.jsx';
+import TrainerProfile from './components/TrainerProfile.jsx'
+import Trainer from './components/Trainer.jsx';
 
 
 
@@ -26,6 +28,14 @@ const router = createBrowserRouter([
   {
     path:"/fight",
     element:<FightSelect />
+  },
+  {
+    path:"/trainer/:id",
+    element:<TrainerProfile />
+  },
+  {
+    path:"/trainer/",
+    element:<Trainer />
   }
 ])
 
