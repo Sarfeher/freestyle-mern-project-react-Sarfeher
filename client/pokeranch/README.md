@@ -1,9 +1,9 @@
+![giphy](https://github.com/user-attachments/assets/216bcdef-cf06-4014-9102-c821ca481153)
 # Poke Tamagotchi - A MERN Stack + Vite Virtual Pet Game
 
 Welcome to **Poke Tamagotchi**! This project is a fun, interactive virtual pet game inspired by the classic Tamagotchi, where you can manage, train, and battle your favorite Pokémon. Built with the MERN (MongoDB, Express, React, Node.js) stack, this project demonstrates full-stack development with an engaging UI and a RESTful API backend.
 
 ## Table of Contents
-
 - [Features](#features)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
