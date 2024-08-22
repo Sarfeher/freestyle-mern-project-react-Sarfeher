@@ -35,7 +35,7 @@ Ensure you have the following installed on your machine:
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/your-username/poke-tamagotchi.git
+    git clone https://github.com/Sarfeher/freestyle-mern-project-react-Sarfeher
     cd poke-tamagotchi
     ```
 
